@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vila Abaeté — Serenidade com a Natureza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #f5f0eb; overflow-x: hidden; }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('img/jXybCya7m4qT.jpg') center/cover no-repeat;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%);
+        }
+        .hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 800px; }
+        .hero-logo { width: 260px; margin: 0 auto 2.5rem; display: block; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5)); }
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 22px;
+            border: 1px solid rgba(212,175,55,0.5);
+            border-radius: 30px;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f5f0eb 30%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            color: rgba(245,240,235,0.65);
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+        }
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 36px;
+            background: transparent;
+            border: 1.5px solid #d4af37;
+            color: #d4af37;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .hero-cta:hover { background: #d4af37; color: #0a0a0a; }
+        .hero-scroll {
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: rgba(245,240,235,0.4); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+        }
+        .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(212,175,55,0.6), transparent); }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+            transition: all 0.3s;
+        }
+        .nav-logo { height: 36px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(245,240,235,0.6); text-decoration: none;
+            font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #d4af37; }
+        .nav-cta {
+            padding: 8px 20px;
+            border: 1px solid rgba(212,175,55,0.5);
+            border-radius: 3px;
+            color: #d4af37 !important;
+            font-size: 0.75rem !important;
+        }
+        .nav-cta:hover { background: rgba(212,175,55,0.1) !important; }
+
+        /* ── SECTIONS ── */
+        .section { padding: 5rem 1.5rem; max-width: 960px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+            color: #d4af37; margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 600; color: #f5f0eb; margin-bottom: 0.5rem;
+        }
+        .gold-line { width: 50px; height: 2px; background: #d4af37; margin: 1.2rem 0 2rem; }
+        .section-text { color: rgba(245,240,235,0.65); line-height: 1.8; font-size: 0.95rem; }
+
+        /* ── DIVIDER ── */
+        .divider { border: none; border-top: 1px solid rgba(212,175,55,0.12); margin: 0; }
+
+        /* ── STATS GRID ── */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem; margin-top: 3rem;
+        }
+        .stat-card {
+            background: rgba(26,26,46,0.6);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 12px; padding: 1.5rem; text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem; font-weight: 700; color: #d4af37;
+        }
+        .stat-label { font-size: 0.75rem; color: rgba(245,240,235,0.5); margin-top: 4px; letter-spacing: 1px; }
+
+        /* ── PHOTO GRID ── */
+        .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+        .photo-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+        .photo-grid-hero { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+        .photo-grid-hero .sub-grid { display: grid; grid-template-rows: 1fr 1fr; gap: 1rem; }
+        .photo-item { position: relative; overflow: hidden; border-radius: 8px; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+        .photo-item:hover img { transform: scale(1.04); }
+        .photo-item.tall { height: 420px; }
+        .photo-item.medium { height: 200px; }
+        .photo-item.short { height: 260px; }
+        .photo-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 1rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            font-size: 0.78rem; color: rgba(245,240,235,0.8); letter-spacing: 1px;
+        }
+
+        /* ── SUITES ── */
+        .suites-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+        .suite-card {
+            background: rgba(16,16,32,0.8);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 14px; overflow: hidden;
+        }
+        .suite-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .suite-body { padding: 1.5rem; }
+        .suite-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; color: #f5f0eb; margin-bottom: 0.5rem;
+        }
+        .suite-desc { font-size: 0.85rem; color: rgba(245,240,235,0.55); line-height: 1.6; }
+        .suite-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+        .suite-tag {
+            padding: 4px 10px; border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 20px; font-size: 0.7rem; color: rgba(212,175,55,0.8); letter-spacing: 0.5px;
+        }
+
+        /* ── MEDIA SECTION ── */
+        .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+        .media-card {
+            background: rgba(16,16,32,0.8);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 14px; padding: 2rem;
+            display: flex; flex-direction: column; gap: 1rem;
+        }
+        .media-icon { font-size: 2.5rem; }
+        .media-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #f5f0eb; }
+        .media-desc { font-size: 0.88rem; color: rgba(245,240,235,0.55); line-height: 1.7; }
+        .media-badge {
+            display: inline-block; padding: 5px 14px;
+            background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px; font-size: 0.72rem; color: #d4af37; letter-spacing: 1px;
+            width: fit-content;
+        }
+
+        /* ── SERVICES ── */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+        .service-group {
+            background: rgba(16,16,32,0.6);
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 12px; padding: 1.5rem;
+        }
+        .service-group-title {
+            font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+            color: #d4af37; margin-bottom: 1rem;
+        }
+        .service-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .service-list li { font-size: 0.88rem; color: rgba(245,240,235,0.65); display: flex; align-items: center; gap: 8px; }
+        .service-list li::before { content: '—'; color: rgba(212,175,55,0.4); font-size: 0.7rem; }
+        .service-notice {
+            margin-top: 2.5rem; padding: 1.2rem 1.5rem;
+            background: rgba(212,175,55,0.06); border-left: 3px solid #d4af37;
+            border-radius: 4px; font-size: 0.85rem; color: rgba(245,240,235,0.6);
+        }
+
+        /* ── PASSEIOS ── */
+        .passeios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+        .passeio-card {
+            background: rgba(16,16,32,0.7);
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 14px; overflow: hidden;
+        }
+        .passeio-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+        .passeio-body { padding: 1.2rem; }
+        .passeio-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #f5f0eb; margin-bottom: 0.4rem; }
+        .passeio-desc { font-size: 0.82rem; color: rgba(245,240,235,0.5); line-height: 1.6; }
+
+        /* ── RESTAURANTES ── */
+        .rest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+        .rest-card {
+            background: rgba(16,16,32,0.7);
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 14px; padding: 1.5rem;
+        }
+        .rest-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #f5f0eb; margin-bottom: 4px; }
+        .rest-stars { color: #d4af37; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .rest-type { font-size: 0.78rem; color: rgba(245,240,235,0.4); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.8rem; }
+        .rest-desc { font-size: 0.85rem; color: rgba(245,240,235,0.55); line-height: 1.6; }
+
+        /* ── AIRBNB CTA ── */
+        .airbnb-section {
+            background: linear-gradient(135deg, #1a1a2e, #0f1a2e);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 20px; padding: 3.5rem 2rem; text-align: center;
+            margin-top: 2rem;
+        }
+        .airbnb-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: #f5f0eb; margin-bottom: 1rem; }
+        .airbnb-desc { color: rgba(245,240,235,0.55); font-size: 0.95rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .airbnb-btn {
+            display: inline-block; padding: 16px 44px;
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: #0a0a0a; font-weight: 600; font-size: 0.9rem;
+            letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
+            border-radius: 4px; transition: opacity 0.3s;
+        }
+        .airbnb-btn:hover { opacity: 0.85; }
+
+        /* ── CONTATO ── */
+        .contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+        .contato-item { display: flex; flex-direction: column; gap: 0.4rem; }
+        .contato-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; }
+        .contato-value { font-size: 0.95rem; color: rgba(245,240,235,0.7); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #050505;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            padding: 2.5rem 1.5rem; text-align: center;
+        }
+        .footer-logo { height: 50px; margin-bottom: 1rem; opacity: 0.7; }
+        .footer-text { font-size: 0.78rem; color: rgba(245,240,235,0.3); letter-spacing: 1px; }
+        .footer-wanderlust {
+            margin-top: 1.5rem; padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.72rem; color: rgba(245,240,235,0.2); letter-spacing: 1px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .photo-grid-2, .photo-grid-hero, .media-grid, .contato-grid { grid-template-columns: 1fr; }
+            .photo-grid-3 { grid-template-columns: 1fr 1fr; }
+            .photo-item.tall { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <img src="img/logo-vila-abaete.png" alt="Vila Abaeté" class="nav-logo">
+    <ul class="nav-links">
+        <li><a href="#sobre">A Vila</a></li>
+        <li><a href="#suites">Suítes</a></li>
+        <li><a href="#midia">Na Mídia</a></li>
+        <li><a href="#passeios">Passeios</a></li>
+        <li><a href="#restaurantes">Gastronomia</a></li>
+        <li><a href="#reserva" class="nav-cta">Reservar</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <img src="img/logo-vila-abaete.png" alt="Vila Abaeté" class="hero-logo">
+        <div class="hero-badge">Cajueiro da Praia · Piauí · Brasil</div>
+        <h1>Uma experiência única<br>à beira do Atlântico</h1>
+        <p class="hero-sub">5 suítes · Piscina privativa · 5.000 m² de natureza</p>
+        <a href="#sobre" class="hero-cta">Descobrir a Vila</a>
+    </div>
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section" id="sobre">
+    <div class="section-label">A Propriedade</div>
+    <h2 class="section-title">Serenidade com a Natureza</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">
+        A Vila Abaeté é uma propriedade exclusiva localizada em Cajueiro da Praia, no litoral do Piauí, a poucos metros da praia de Barra Grande. Com 1.500 m² de área construída em um terreno de 5.000 m², a casa foi projetada para oferecer uma experiência de imersão total na natureza, combinando arquitetura regional com conforto contemporâneo.
+    </p>
+    <p class="section-text" style="margin-top: 1rem;">
+        Rodeada por dunas, coqueiros e o vento constante que faz de Barra Grande um dos melhores destinos de kitesurf do Brasil, a Vila Abaeté é o refúgio perfeito para quem busca exclusividade, privacidade e contato genuíno com a natureza piauiense.
+    </p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Suítes Privativas</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">10</div>
+            <div class="stat-label">Hóspedes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">5.000</div>
+            <div class="stat-label">m² de Terreno</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">1.500</div>
+            <div class="stat-label">m² Construídos</div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- GALERIA PRINCIPAL -->
+<section class="section" id="galeria">
+    <div class="section-label">Galeria</div>
+    <h2 class="section-title">A Casa</h2>
+    <div class="gold-line"></div>
+
+    <div class="photo-grid-hero">
+        <div class="photo-item tall">
+            <img src="img/jXybCya7m4qT.jpg" alt="Piscina e fachada da Vila Abaeté">
+            <div class="photo-caption">Piscina privativa e área de convivência</div>
+        </div>
+        <div class="sub-grid">
+            <div class="photo-item medium">
+                <img src="img/gZNFVZHuo5eA.jpeg" alt="Fachada da Vila Abaeté">
+                <div class="photo-caption">Fachada principal</div>
+            </div>
+            <div class="photo-item medium">
+                <img src="img/lrpRPww8ibdS.jpeg" alt="Deck da piscina">
+                <div class="photo-caption">Deck e área gourmet</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="photo-grid-3" style="margin-top: 1rem;">
+        <div class="photo-item short">
+            <img src="img/nZKJya186ram.png" alt="Sala de estar">
+            <div class="photo-caption">Sala de estar</div>
+        </div>
+        <div class="photo-item short">
+            <img src="img/8zXPURiWM1iS.png" alt="Cozinha gourmet">
+            <div class="photo-caption">Cozinha gourmet</div>
+        </div>
+        <div class="photo-item short">
+            <img src="img/8zjZ5ghOyd7h.png" alt="Área externa">
+            <div class="photo-caption">Área externa</div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- SUÍTES -->
+<section class="section" id="suites">
+    <div class="section-label">Acomodações</div>
+    <h2 class="section-title">5 Suítes Exclusivas</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">Todas as suítes possuem ar-condicionado, ventilador de teto, frigobar, TV e banheiro privativo. A decoração combina elementos regionais com conforto contemporâneo.</p>
+
+    <div class="suites-grid">
+        <div class="suite-card">
+            <img src="img/ivYmOhQr9Bgw.png" alt="Suíte Master" class="suite-img">
+            <div class="suite-body">
+                <div class="suite-name">Suíte Master</div>
+                <div class="suite-desc">Suíte ampla com cama king size, vista para o jardim e banheiro com ducha de imersão.</div>
+                <div class="suite-tags">
+                    <span class="suite-tag">King Size</span>
+                    <span class="suite-tag">Vista Jardim</span>
+                    <span class="suite-tag">Banheiro Luxo</span>
+                </div>
+            </div>
+        </div>
+        <div class="suite-card">
+            <img src="img/WtP9BlL0rqcc.jpg" alt="Suíte Dupla" class="suite-img">
+            <div class="suite-body">
+                <div class="suite-name">Suíte Dupla</div>
+                <div class="suite-desc">Perfeita para famílias ou amigos, com duas camas de casal e decoração rústica contemporânea.</div>
+                <div class="suite-tags">
+                    <span class="suite-tag">2 Camas Casal</span>
+                    <span class="suite-tag">Varanda</span>
+                    <span class="suite-tag">Ar-condicionado</span>
+                </div>
+            </div>
+        </div>
+        <div class="suite-card">
+            <img src="img/mQOBWIbq6OHK.jpg" alt="Suíte Casal" class="suite-img">
+            <div class="suite-body">
+                <div class="suite-name">Suíte Casal</div>
+                <div class="suite-desc">Ambiente íntimo com cama queen size, iluminação aconchegante e banheiro moderno.</div>
+                <div class="suite-tags">
+                    <span class="suite-tag">Queen Size</span>
+                    <span class="suite-tag">Frigobar</span>
+                    <span class="suite-tag">TV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- GALERIA INTERIORES -->
+<section class="section">
+    <div class="section-label">Interiores</div>
+    <h2 class="section-title">Detalhes que Encantam</h2>
+    <div class="gold-line"></div>
+
+    <div class="photo-grid-2">
+        <div class="photo-item short">
+            <img src="img/ZEDrmZfOid95.jpg" alt="Detalhe interior">
+            <div class="photo-caption">Decoração regional</div>
+        </div>
+        <div class="photo-item short">
+            <img src="img/mXeQByjQRfmo.jpg" alt="Área de lazer">
+            <div class="photo-caption">Área de lazer</div>
+        </div>
+    </div>
+    <div class="photo-grid-3" style="margin-top: 1rem;">
+        <div class="photo-item medium">
+            <img src="img/LlY0mUx700mq.jpg" alt="Vista da propriedade">
+        </div>
+        <div class="photo-item medium">
+            <img src="img/mTALoXhWj8S3.jpg" alt="Área externa">
+        </div>
+        <div class="photo-item medium">
+            <img src="img/mkbSNZDseRKB.jpg" alt="Jardim">
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- NA MÍDIA -->
+<section class="section" id="midia">
+    <div class="section-label">Reconhecimento</div>
+    <h2 class="section-title">Na Mídia Nacional</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">A beleza única da Vila Abaeté foi reconhecida e escolhida para protagonizar produções de renome nacional.</p>
+
+    <div class="media-grid">
+        <div class="media-card">
+            <div class="media-icon">🎵</div>
+            <div class="media-title">Clipe "Numa Ilha"</div>
+            <div class="media-badge">Marina Sena</div>
+            <div class="media-desc">
+                A Vila Abaeté foi escolhida como cenário principal do clipe da cantora Marina Sena, "Numa Ilha". A beleza da propriedade, com sua piscina à beira-mar e arquitetura singular, ganhou destaque nacional através da produção musical.
+            </div>
+        </div>
+        <div class="media-card">
+            <div class="media-icon">📺</div>
+            <div class="media-title">Casas que Valem Viagem</div>
+            <div class="media-badge">Globoplay</div>
+            <div class="media-desc">
+                A Vila Abaeté integra a série "Casas que Valem Viagem" do Globoplay, que apresenta as propriedades mais especiais e únicas do Brasil. Um reconhecimento da exclusividade e do charme incomparável da casa.
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVIÇOS -->
+<section class="section" id="servicos">
+    <div class="section-label">Serviços</div>
+    <h2 class="section-title">Equipe Completa</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">Para uma experiência ainda mais exclusiva, a Vila Abaeté oferece a possibilidade de contratar uma equipe completa de profissionais especializados.</p>
+
+    <div class="services-grid">
+        <div class="service-group">
+            <div class="service-group-title">🍽️ Gastronômico</div>
+            <ul class="service-list">
+                <li>Chef de Cozinha</li>
+                <li>Cozinheiro</li>
+                <li>Garçom</li>
+                <li>Bartender</li>
+            </ul>
+        </div>
+        <div class="service-group">
+            <div class="service-group-title">🏠 Doméstico</div>
+            <ul class="service-list">
+                <li>Camareira</li>
+                <li>Faxineira</li>
+                <li>Lavadeira</li>
+            </ul>
+        </div>
+        <div class="service-group">
+            <div class="service-group-title">🛎️ Especializado</div>
+            <ul class="service-list">
+                <li>Segurança</li>
+                <li>Motorista</li>
+                <li>Guia Turístico</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="service-notice">
+        ⚠️ <strong>Serviços opcionais disponíveis para contratação</strong> — não inclusos na locação da casa. Consulte disponibilidade e valores ao realizar sua reserva.
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- PASSEIOS -->
+<section class="section" id="passeios">
+    <div class="section-label">Região</div>
+    <h2 class="section-title">Passeios e Atrações</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">Cajueiro da Praia e Barra Grande oferecem experiências únicas que complementam a estadia na Vila Abaeté.</p>
+
+    <div class="passeios-grid">
+        <div class="passeio-card">
+            <img src="img/3AeJdztWRmqb.jpg" alt="Kitesurf Barra Grande" class="passeio-img">
+            <div class="passeio-body">
+                <div class="passeio-name">Kitesurf em Barra Grande</div>
+                <div class="passeio-desc">Um dos melhores destinos de kitesurf do Brasil, com ventos constantes e praias paradisíacas.</div>
+            </div>
+        </div>
+        <div class="passeio-card">
+            <img src="img/DKNQn5H7LQzt.jpg" alt="Delta do Parnaíba" class="passeio-img">
+            <div class="passeio-body">
+                <div class="passeio-name">Delta do Parnaíba</div>
+                <div class="passeio-desc">O maior delta em mar aberto das Américas, com ilhas fluviais, fauna exuberante e paisagens únicas.</div>
+            </div>
+        </div>
+        <div class="passeio-card">
+            <img src="img/BaeX9CV85h2J.jpg" alt="Peixe-boi marinho" class="passeio-img">
+            <div class="passeio-body">
+                <div class="passeio-name">Observação do Peixe-Boi</div>
+                <div class="passeio-desc">Habitat natural do peixe-boi marinho, espécie ameaçada que pode ser observada nas águas da região.</div>
+            </div>
+        </div>
+        <div class="passeio-card">
+            <img src="img/ZARar8CNqQTX.jpg" alt="Lençóis Piauienses" class="passeio-img">
+            <div class="passeio-body">
+                <div class="passeio-name">Lençóis Piauienses</div>
+                <div class="passeio-desc">Dunas brancas e lagoas de água doce formam uma paisagem de tirar o fôlego, acessível de UTV.</div>
+            </div>
+        </div>
+        <div class="passeio-card">
+            <img src="img/fmu6IyGRrEK5.jpg" alt="Revoada dos Guarás" class="passeio-img">
+            <div class="passeio-body">
+                <div class="passeio-name">Revoada dos Guarás</div>
+                <div class="passeio-desc">Espetáculo natural único: milhares de guarás tingem o céu de vermelho ao entardecer no Delta.</div>
+            </div>
+        </div>
+        <div class="passeio-card">
+            <img src="img/NBo3anAyd4V5.jpg" alt="Cajueiro Rei" class="passeio-img">
+            <div class="passeio-body">
+                <div class="passeio-name">Cajueiro Rei</div>
+                <div class="passeio-desc">O maior cajueiro do mundo, com mais de 8.000 m² de copa, localizado em Pirangi, a poucos quilômetros.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-notice" style="margin-top: 2rem;">
+        ⚠️ <strong>Passeios opcionais disponíveis para contratação</strong> — não inclusos na locação da casa. Consulte disponibilidade e valores ao realizar sua reserva.
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- RESTAURANTES -->
+<section class="section" id="restaurantes">
+    <div class="section-label">Gastronomia</div>
+    <h2 class="section-title">Restaurantes da Região</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">Barra Grande e Cajueiro da Praia oferecem uma cena gastronômica surpreendente, com frutos do mar frescos e pratos regionais de alta qualidade.</p>
+
+    <div class="rest-grid">
+        <div class="rest-card">
+            <div class="rest-name">Brasa do Mar</div>
+            <div class="rest-stars">★★★★★ 4,9</div>
+            <div class="rest-type">Frutos do Mar · Grelhados</div>
+            <div class="rest-desc">Referência gastronômica da região, especializado em frutos do mar frescos grelhados na brasa. Vista para o mar.</div>
+        </div>
+        <div class="rest-card">
+            <div class="rest-name">La Cozinha</div>
+            <div class="rest-stars">★★★★½ 4,5</div>
+            <div class="rest-type">Contemporâneo · Regional</div>
+            <div class="rest-desc">Considerado um dos melhores restaurantes de Barra Grande, com cardápio criativo e ingredientes locais.</div>
+        </div>
+        <div class="rest-card">
+            <div class="rest-name">Bandoleiros The Hut</div>
+            <div class="rest-stars">★★★★ 4,4</div>
+            <div class="rest-type">Petiscos · Bar · Drinks</div>
+            <div class="rest-desc">Ambiente descontraído à beira-mar, ideal para petiscos, drinks artesanais e pôr do sol inesquecível.</div>
+        </div>
+        <div class="rest-card">
+            <div class="rest-name">Mô Restaurante</div>
+            <div class="rest-stars">★★★★½ 4,5</div>
+            <div class="rest-type">Internacional · Pizzas</div>
+            <div class="rest-desc">Opções variadas com pizzas artesanais e pratos internacionais, em ambiente aconchegante e familiar.</div>
+        </div>
+        <div class="rest-card">
+            <div class="rest-name">Bahamas</div>
+            <div class="rest-stars">★★★★ 4,3</div>
+            <div class="rest-type">Pé na Areia · Frutos do Mar</div>
+            <div class="rest-desc">Restaurante "pé na areia" com mesas diretamente na praia, frutos do mar frescos e ambiente paradisíaco.</div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- RESERVA AIRBNB -->
+<section class="section" id="reserva">
+    <div class="section-label">Disponibilidade</div>
+    <h2 class="section-title">Reserve sua Estadia</h2>
+    <div class="gold-line"></div>
+
+    <div class="airbnb-section">
+        <div class="airbnb-title">Verifique a Disponibilidade</div>
+        <div class="airbnb-desc">Consulte as datas disponíveis e faça sua reserva diretamente pelo Airbnb. Experiência exclusiva para até 10 hóspedes.</div>
+        <a href="https://www.airbnb.com.br/rooms/1040808499735444422" target="_blank" class="airbnb-btn">
+            Verificar Disponibilidade no Airbnb
+        </a>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTATO -->
+<section class="section" id="contato">
+    <div class="section-label">Localização</div>
+    <h2 class="section-title">Como Chegar</h2>
+    <div class="gold-line"></div>
+    <p class="section-text">Cajueiro da Praia está localizada no litoral do Piauí, acessível pelos aeroportos de Parnaíba e Teresina.</p>
+
+    <div class="contato-grid">
+        <div class="contato-item">
+            <span class="contato-label">Localização</span>
+            <span class="contato-value">Cajueiro da Praia, Piauí, Brasil</span>
+        </div>
+        <div class="contato-item">
+            <span class="contato-label">Aeroporto mais próximo</span>
+            <span class="contato-value">Parnaíba (PHB) — 45 min</span>
+        </div>
+        <div class="contato-item">
+            <span class="contato-label">Aeroporto alternativo</span>
+            <span class="contato-value">Teresina (THE) — 3h30 de carro</span>
+        </div>
+        <div class="contato-item">
+            <span class="contato-label">Praia de referência</span>
+            <span class="contato-value">Barra Grande — 5 min</span>
+        </div>
+        <div class="contato-item">
+            <span class="contato-label">Site oficial</span>
+            <span class="contato-value"><a href="https://vilaabaete.com.br" target="_blank" style="color: #d4af37; text-decoration: none;">vilaabaete.com.br</a></span>
+        </div>
+        <div class="contato-item">
+            <span class="contato-label">Reservas</span>
+            <span class="contato-value"><a href="https://www.airbnb.com.br/rooms/1040808499735444422" target="_blank" style="color: #d4af37; text-decoration: none;">Airbnb — Vila Abaeté</a></span>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <img src="img/logo-vila-abaete.png" alt="Vila Abaeté" class="footer-logo">
+    <div class="footer-text">Cajueiro da Praia · Piauí · Brasil</div>
+    <div class="footer-text" style="margin-top: 0.5rem; color: rgba(245,240,235,0.2);">vilaabaete.com.br</div>
+    <div class="footer-wanderlust">
+        Apresentado por Wanderlust Turismo · CNPJ 52.883.718/0001-77
+    </div>
+</footer>
+
+</body>
+</html>
