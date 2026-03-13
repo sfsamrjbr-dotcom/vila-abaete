@@ -399,6 +399,51 @@
       background: var(--dark2);
     }
 
+    /* Carrossel de suítes */
+    .suites-carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .suites-carousel {
+      display: flex;
+      transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+    }
+    .suites-carousel .suite-card {
+      min-width: calc(33.333% - 12px);
+      margin-right: 18px;
+      flex-shrink: 0;
+    }
+    .suite-carousel-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(10,10,10,0.7);
+      border: 1px solid rgba(212,175,55,0.5);
+      color: var(--gold);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .suite-carousel-btn.prev { left: 12px; }
+    .suite-carousel-btn.next { right: 12px; }
+    .suite-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .suite-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .suite-dot.active { background: var(--gold); }
+
     .suites-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -968,31 +1013,72 @@
     <p class="section-label">Acomodações</p>
     <div class="gold-line"></div>
     <h2 class="section-title">5 Suítes Exclusivas</h2>
-    <p class="section-text">Cada suíte foi projetada para oferecer conforto máximo com decoração que dialoga com a natureza local.</p>
+    <p class="section-text">Cada suíte foi projetada para oferecer conforto máximo com decoração que dialoga com a natureza local. Ambientes únicos com arte original, mobiliário selecionado e vista privilegiada.</p>
   </div>
 
-  <div class="suites-grid" style="margin-top:48px;">
-    <div class="suite-card">
-      <img src="img/pro/pro_12.jpg" alt="Suíte Master" class="clickable-img" onclick="openLightbox(this)">
-      <div class="suite-overlay">
-        <div class="suite-name">Suíte Master</div>
-        <div class="suite-desc">Espaçosa, com vista privilegiada</div>
+  <div class="suites-carousel-wrap">
+    <button class="suite-carousel-btn prev" onclick="suitePrev()">&#8592;</button>
+    <div class="suites-carousel" id="suitesCarousel">
+      <div class="suite-card">
+        <img src="img/pro/pro_18.jpg" alt="Suíte — Cama e Arte" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Suíte Master</div>
+          <div class="suite-desc">Cama king, arte original e chaise de veludo</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_19.jpg" alt="Suíte — Detalhe Chaise" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Suíte Master</div>
+          <div class="suite-desc">Detalhes exclusivos de design</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_17.jpg" alt="Suíte — Poltrona e Janela" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Suíte Standard</div>
+          <div class="suite-desc">Poltrona bouclé e vista para o jardim</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_13.jpg" alt="Suíte — Vista Quarto" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Suíte Standard</div>
+          <div class="suite-desc">Espaço amplo com luz natural</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_15.jpg" alt="Suíte — Vista Palmeiras" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Suíte Jardim</div>
+          <div class="suite-desc">Vista para as palmeiras tropicais</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_16.jpg" alt="Suíte — Detalhe Decoração" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Detalhes Exclusivos</div>
+          <div class="suite-desc">Mobiliário selecionado e arte local</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_14.jpg" alt="Suíte — Travesseiros" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Conforto Premium</div>
+          <div class="suite-desc">Roupa de cama de alta qualidade</div>
+        </div>
+      </div>
+      <div class="suite-card">
+        <img src="img/pro/pro_12.jpg" alt="Suíte — Vista Geral" class="clickable-img" onclick="openLightbox(this)">
+        <div class="suite-overlay">
+          <div class="suite-name">Vista Privilegiada</div>
+          <div class="suite-desc">Cada suíte com sua personalidade única</div>
+        </div>
       </div>
     </div>
-    <div class="suite-card">
-      <img src="img/pro/pro_13.jpg" alt="Suíte Standard" class="clickable-img" onclick="openLightbox(this)">
-      <div class="suite-overlay">
-        <div class="suite-name">Suítes Standard</div>
-        <div class="suite-desc">Conforto e elegância tropical</div>
-      </div>
-    </div>
-    <div class="suite-card">
-      <img src="img/pro/pro_14.jpg" alt="Detalhe da Suíte" class="clickable-img" onclick="openLightbox(this)">
-      <div class="suite-overlay">
-        <div class="suite-name">Detalhes Exclusivos</div>
-        <div class="suite-desc">Cada detalhe pensado para você</div>
-      </div>
-    </div>
+    <button class="suite-carousel-btn next" onclick="suiteNext()">&#8594;</button>
+  </div>
+  <div class="suite-dots" id="suiteDots"></div>
   </div>
 </section>
 
@@ -1300,6 +1386,47 @@
     const cardWidth = fotosCards[0].offsetWidth + 20;
     fotosTrack.style.transform = `translateX(-${fotosIdx * cardWidth}px)`;
   }
+
+  /* ── Carrossel de Suítes ── */
+  let suiteIdx = 0;
+  const SUITES_VISIBLE = 3;
+  const suiteCards = document.querySelectorAll('#suitesCarousel .suite-card');
+  const totalSuites = suiteCards.length;
+  const suiteDots = document.getElementById('suiteDots');
+
+  // Criar dots
+  for (let i = 0; i < totalSuites - SUITES_VISIBLE + 1; i++) {
+    const d = document.createElement('div');
+    d.className = 'suite-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goSuite(i);
+    suiteDots.appendChild(d);
+  }
+
+  function updateSuiteCarousel() {
+    const card = suiteCards[0];
+    const cardW = card.offsetWidth + 18;
+    document.getElementById('suitesCarousel').style.transform = `translateX(-${suiteIdx * cardW}px)`;
+    document.querySelectorAll('.suite-dot').forEach((d, i) => d.classList.toggle('active', i === suiteIdx));
+  }
+
+  function suiteNext() {
+    if (suiteIdx < totalSuites - SUITES_VISIBLE) suiteIdx++;
+    else suiteIdx = 0;
+    updateSuiteCarousel();
+  }
+
+  function suitePrev() {
+    if (suiteIdx > 0) suiteIdx--;
+    else suiteIdx = totalSuites - SUITES_VISIBLE;
+    updateSuiteCarousel();
+  }
+
+  function goSuite(i) {
+    suiteIdx = i;
+    updateSuiteCarousel();
+  }
+
+  window.addEventListener('resize', updateSuiteCarousel);
 </script>
 
 <!-- LIGHTBOX -->
