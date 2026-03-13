@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vila Abaeté — Serenidade com a Natureza</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -45,9 +45,22 @@
       border-bottom: 1px solid rgba(212,175,55,0.15);
     }
 
-    .nav-logo img {
-      height: 52px;
-      filter: brightness(1.1);
+    .nav-logo {
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: var(--text);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
     }
 
     .nav-links {
@@ -115,10 +128,22 @@
       padding: 0 24px 80px;
     }
 
-    .hero-logo {
-      width: 220px;
-      margin: 0 auto 24px;
-      filter: brightness(1.15) drop-shadow(0 4px 24px rgba(0,0,0,0.6));
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 9vw, 110px);
+      font-weight: 300;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+      text-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    }
+
+    .hero-title span {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 300;
     }
 
     .hero-subtitle {
@@ -704,15 +729,23 @@
       border-top: 1px solid rgba(212,175,55,0.1);
     }
 
-    footer img {
-      height: 40px;
-      opacity: 0.7;
-    }
-
     .footer-text {
       font-size: 12px;
       color: var(--text-muted);
       text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .footer-brand span {
+      color: var(--gold);
+      font-style: italic;
     }
 
     .footer-wanderlust {
@@ -724,6 +757,58 @@
     .footer-wanderlust span {
       color: var(--gold);
     }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.93);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      color: var(--gold);
+      font-size: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(212,175,55,0.15);
+      border: 1px solid rgba(212,175,55,0.4);
+      color: var(--gold);
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-arrow.prev { left: 24px; }
+    .lightbox-arrow.next { right: 24px; }
+    .clickable-img {
+      cursor: zoom-in;
+      transition: opacity 0.2s;
+    }
+    .clickable-img:hover { opacity: 0.88; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -745,9 +830,9 @@
 
 <!-- NAVBAR -->
 <nav>
-  <div class="nav-logo">
-    <img src="img/real/logo_transparente.png" alt="Vila Abaeté">
-  </div>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-text">Vila <span>Abaeté</span></div>
+  </a>
   <ul class="nav-links">
     <li><a href="#sobre">A Vila</a></li>
     <li><a href="#galeria">Galeria</a></li>
@@ -770,7 +855,7 @@
   </div>
 
   <div class="hero-content">
-    <img src="img/real/logo_transparente.png" alt="Vila Abaeté" class="hero-logo">
+    <h1 class="hero-title">Vila <span>Abaeté</span></h1>
     <p class="hero-subtitle">Cajueiro da Praia · Piauí · Brasil</p>
     <p class="hero-location">Beira-mar · 5 Suítes · Até 10 Hóspedes</p>
   </div>
@@ -830,20 +915,20 @@
 <!-- GALERIA PRINCIPAL -->
 <section id="galeria">
   <div class="galeria-grid">
-    <div class="galeria-item">
-      <img src="img/pro/pro_10.jpg" alt="Piscina e Deck">
+        <div class="galeria-item">
+      <img src="img/pro/pro_10.jpg" alt="Piscina e Deck" class="clickable-img" onclick="openLightbox(this)">
     </div>
     <div class="galeria-item">
-      <img src="img/pro/pro_04.jpg" alt="Área de Lazer">
+      <img src="img/pro/pro_04.jpg" alt="Área de Lazer" class="clickable-img" onclick="openLightbox(this)">
     </div>
     <div class="galeria-item">
-      <img src="img/pro/pro_08.jpg" alt="Lounge Exclusivo">
+      <img src="img/pro/pro_08.jpg" alt="Lounge Exclusivo" class="clickable-img" onclick="openLightbox(this)">
     </div>
     <div class="galeria-item">
-      <img src="img/pro/pro_02.jpg" alt="Vista da Praia">
+      <img src="img/pro/pro_02.jpg" alt="Vista da Praia" class="clickable-img" onclick="openLightbox(this)">
     </div>
     <div class="galeria-item">
-      <img src="img/pro/pro_05.jpg" alt="Área Externa">
+      <img src="img/pro/pro_05.jpg" alt="Área Externa" class="clickable-img" onclick="openLightbox(this)">
     </div>
   </div>
 </section>
@@ -859,14 +944,14 @@
 
     <div class="fotos-carousel">
       <div class="fotos-track" id="fotosTrack">
-        <div class="foto-card"><img src="img/pro/pro_06.jpg" alt="Vila Abaeté"></div>
-        <div class="foto-card"><img src="img/pro/pro_07.jpg" alt="Vila Abaeté"></div>
-        <div class="foto-card"><img src="img/pro/pro_09.jpg" alt="Vila Abaeté"></div>
-        <div class="foto-card"><img src="img/pro/pro_03.jpg" alt="Vila Abaeté"></div>
-        <div class="foto-card"><img src="img/pro/pro_11.jpg" alt="Vila Abaeté"></div>
-        <div class="foto-card"><img src="img/real/piscina.jpeg" alt="Piscina"></div>
-        <div class="foto-card"><img src="img/real/sala_estar.jpg" alt="Sala de Estar"></div>
-        <div class="foto-card"><img src="img/real/area_jantar.jpeg" alt="Área de Jantar"></div>
+        <div class="foto-card"><img src="img/pro/pro_06.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_07.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_09.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_03.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_11.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_15.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_16.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
+        <div class="foto-card"><img src="img/pro/pro_17.jpg" alt="Vila Abaeté" class="clickable-img" onclick="openLightbox(this)"></div>
       </div>
     </div>
 
@@ -888,24 +973,24 @@
 
   <div class="suites-grid" style="margin-top:48px;">
     <div class="suite-card">
-      <img src="img/pro/pro_12.jpg" alt="Suíte Master">
+      <img src="img/pro/pro_12.jpg" alt="Suíte Master" class="clickable-img" onclick="openLightbox(this)">
       <div class="suite-overlay">
         <div class="suite-name">Suíte Master</div>
         <div class="suite-desc">Espaçosa, com vista privilegiada</div>
       </div>
     </div>
     <div class="suite-card">
-      <img src="img/real/suite_master.webp" alt="Suíte Standard">
+      <img src="img/pro/pro_13.jpg" alt="Suíte Standard" class="clickable-img" onclick="openLightbox(this)">
       <div class="suite-overlay">
         <div class="suite-name">Suítes Standard</div>
         <div class="suite-desc">Conforto e elegância tropical</div>
       </div>
     </div>
     <div class="suite-card">
-      <img src="img/real/beira_mar.jpeg" alt="Vista Beira-Mar">
+      <img src="img/pro/pro_14.jpg" alt="Detalhe da Suíte" class="clickable-img" onclick="openLightbox(this)">
       <div class="suite-overlay">
-        <div class="suite-name">Vista Beira-Mar</div>
-        <div class="suite-desc">Acorde com o som do mar</div>
+        <div class="suite-name">Detalhes Exclusivos</div>
+        <div class="suite-desc">Cada detalhe pensado para você</div>
       </div>
     </div>
   </div>
@@ -1171,7 +1256,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="img/real/logo_transparente.png" alt="Vila Abaeté">
+  <div class="footer-brand">Vila <span>Abaeté</span></div>
   <div class="footer-text">
     © 2024 Vila Abaeté · Cajueiro da Praia, Piauí<br>
     Todos os direitos reservados
@@ -1215,6 +1300,53 @@
     const cardWidth = fotosCards[0].offsetWidth + 20;
     fotosTrack.style.transform = `translateX(-${fotosIdx * cardWidth}px)`;
   }
+</script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-arrow prev" onclick="lightboxNav(-1, event)">&#8592;</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-arrow next" onclick="lightboxNav(1, event)">&#8594;</button>
+</div>
+
+<script>
+  // ── LIGHTBOX ──
+  let lbImages = [];
+  let lbIdx = 0;
+
+  function buildImageList() {
+    lbImages = Array.from(document.querySelectorAll('.clickable-img')).map(img => img.src);
+  }
+
+  function openLightbox(el) {
+    buildImageList();
+    lbIdx = lbImages.indexOf(el.src);
+    document.getElementById('lightboxImg').src = lbImages[lbIdx];
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function lightboxNav(dir, e) {
+    e && e.stopPropagation();
+    lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+    document.getElementById('lightboxImg').src = lbImages[lbIdx];
+  }
+
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('active')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') lightboxNav(1);
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+    }
+  });
 </script>
 
 </body>
